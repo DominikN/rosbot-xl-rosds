@@ -1,0 +1,20 @@
+x-common-config:
+  &common-config
+  restart: unless-stopped
+  network_mode: host
+  ipc: host
+  env_file: net.env
+  
+services:
+
+  rosbot-xl:
+    image: husarion/rosbot-xl:humble-nightly
+    container_name: rosbot-xl
+    <<: *common-config
+    command: ros2 launch rosbot_xl_bringup bringup.launch.py mecanum:=${MECANUM:-True}
+
+  microros:
+    image: husarion/micro-ros-agent:humble
+    container_name: microros
+    <<: *common-config
+    command: ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
