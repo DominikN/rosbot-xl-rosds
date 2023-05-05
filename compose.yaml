@@ -8,7 +8,7 @@ x-common-config:
 services:
 
   rosbot-xl:
-    image: husarion/rosbot-xl:humble-nightly
+    image: husarion/rosbot-xl:humble
     container_name: rosbot-xl
     <<: *common-config
     command: ros2 launch rosbot_xl_bringup bringup.launch.py mecanum:=${MECANUM:-True}
@@ -17,4 +17,6 @@ services:
     image: husarion/micro-ros-agent:humble
     container_name: microros
     <<: *common-config
+    environment: 
+      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
     command: ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888

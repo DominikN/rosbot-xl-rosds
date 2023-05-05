@@ -15,6 +15,8 @@ cd rosbot-xl-rosds
 
 Uncomment one of four available options in `net.env` file.
 
+For local connections use `LAN` options, and for connections with ROS DS use `VPN` option.
+
 ### Pulling the Docker Images
 
 ```
